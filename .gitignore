@@ -5,3 +5,5 @@ tmp/**/*
 doc/
 *.swp
 *~
+#*#
+spec/requests/*.log
