@@ -7,3 +7,4 @@ doc/
 *~
 #*#
 spec/requests/*.log
+*.log
