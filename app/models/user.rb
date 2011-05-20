@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110503001113
+# Schema version: 20110519224332
 #
 # Table name: users
 #
@@ -10,6 +10,7 @@
 #  updated_at         :datetime
 #  encrypted_password :string(255)
 #  salt               :string(255)
+#  admin              :boolean
 #
 
 class User < ActiveRecord::Base
@@ -17,6 +18,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  has_many :microposts, :dependent => :destroy
 
   validates :name,  :presence   => true,
                     :length     => { :maximum => 50 }
