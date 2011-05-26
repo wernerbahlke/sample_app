@@ -1,18 +1,23 @@
 <%= form_for @micropost do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :maxlength => 140 %>
   </div>
+  <div>Characters left: <span id="char-count">140</span></div>
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
 <% end %>
-<!-- Does not work with default jscript
+<script type="text/javascript"> 
+Event.observe('micropost_content', 'keyup', textChanged);
+Event.observe('micropost_content', 'keydown', textChanged);
+</script> 
+<!-- This works with jquery and jqEasyCounter
 <script type="text/javascript"> 
   $(document).ready(function(){
     $('#micropost_content').jqEasyCounter({
       'maxCharsWarning': 120
   });
 });
-</script> 
+
 -->
