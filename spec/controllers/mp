@@ -43,9 +43,7 @@ describe MicropostsController do
     describe "success" do
 
       before(:each) do
-        @attr  = { :content => "Lorem ipsum" }
-        @attr1 = { :content => "Lorem ipsum dolor sit amet"} 
-        @attr2 = { :content => "I hope that this test works!"} 
+        @attr = { :content => "Lorem ipsum" }
       end
 
       it "should create a micropost" do
@@ -63,23 +61,6 @@ describe MicropostsController do
         post :create, :micropost => @attr
         flash[:success].should =~ /micropost created/i
       end
-
-      it "should show the right number of microposts" do 
-        post :create, :micropost => @attr 
-        post :create
-        response.should have_selector("span.microposts", :content => "1 micropost") 
-      end 
-
-      it "should pluralize micropost count" do 
-        post :create 
-        response.should have_selector('span', :content => "0 microposts") 
-        post :create, :micropost => @attr1 
-        post :create 
-        response.should have_selector('span', :content => "1 micropost") 
-        post :create, :micropost => @attr2 
-        post :create 
-        response.should have_selector('span', :content => "2 microposts") 
-      end 
     end
   end
 
