@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def new
     if !signed_in?
       @user = User.new
+      @user.password = ""
       @title = "Sign up"
     else
       redirect_to(root_path)
