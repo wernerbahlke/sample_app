@@ -12,12 +12,14 @@ SampleApp::Application.routes.draw do
   resources :relationships, :only => [:create, :destroy]
 
   match '/signup',  :to => 'users#new'
+  match '/search_userpost', :to => 'users#show'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
+  match '/search',  :to => 'pages#home'
 
   root :to => 'pages#home'
 
