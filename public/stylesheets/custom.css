@@ -250,3 +250,6 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+div.search_form {
+  text-align: right;
+}
