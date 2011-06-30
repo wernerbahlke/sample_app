@@ -203,6 +203,7 @@ describe User do
     before(:each) do
       @user = User.create!(@attr)
       @followed = Factory(:user)
+      @relationship = @user.relationships.build(:followed_id => @followed.id)
     end
 
     it "should have a relationships method" do
@@ -240,6 +241,7 @@ describe User do
       @user.unfollow!(@followed)
       @user.should_not be_following(@followed)
     end
+
    it "should have a reverse_relationships method" do
       @user.should respond_to(:reverse_relationships)
     end
@@ -251,6 +253,13 @@ describe User do
     it "should include the follower in the followers array" do
       @user.follow!(@followed)
       @followed.followers.should include(@user)
+    end
+
+    it "should destroy dependent relationships" do
+      @user.follow!(@followed)
+      @user.destroy
+      @followed.followers.should_not include(@user)
+      Relationship.find_by_id(@relationship.id).should be_nil
     end
   end
 end
