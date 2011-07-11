@@ -84,6 +84,8 @@ describe UsersController do
 
     before(:each) do
       @user = Factory(:user)
+      other_user = Factory(:user, :email => Factory.next(:email))
+      other_user.follow!(@user)
     end
 
     it "should be successful" do
@@ -117,6 +119,14 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("span.content", :content => mp1.content)
       response.should have_selector("span.content", :content => mp2.content)
+    end
+
+    it "should have the right follower/following counts" do
+      get :show, :id => @user
+      response.should have_selector("a", :href => following_user_path(@user),
+                                         :content => "0 following")
+      response.should have_selector("a", :href => followers_user_path(@user),
+                                         :content => "1 follower")
     end
   end
 
