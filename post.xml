@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <user>
-  <name>werner</name>
-  <email>werner@loki.com</email>
-  <password>test42</password>
-  <password_confirmation>test42</password_confirmation>
+  <name>Example</name>
+  <email>example@railstutorial.org</email>
+  <password>foobar</password>
+  <password_confirmation>foobar</password_confirmation>
 </user>
